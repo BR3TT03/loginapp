@@ -32,7 +32,9 @@
       "plugin:vue/essential",
       "@vue/standard"
     ],
-    "rules": {},
+    "rules": {
+      "no-trailing-spaces": "error"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
