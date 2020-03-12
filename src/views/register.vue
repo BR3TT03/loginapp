@@ -1,59 +1,60 @@
 <template>
-      <v-dialog 
-      v-model="dialog" 
-      persistent 
-      max-width="400"
-      no-click-animation
-      overlay-opacity=1
-      >
-        <v-card tile>
-              <v-toolbar
-                color="primary"
-                dark
-                flat
-              >
-                <v-toolbar-title>Famas Registration</v-toolbar-title>
-                <v-spacer />
-                
-              </v-toolbar>
-              <v-card-text>
-                <v-form>
-                  <v-text-field
-                    label="Login"
-                    name="login"
-                    prepend-icon="mdi-account"
-                    type="text"
-                  />
+  <v-card tile>
+    <v-card-text>
+      <v-form>
+        <v-text-field label="First Name" name="login" prepend-icon="mdi-account" type="text" />
+        <v-text-field label="Last Name" name="login" prepend-icon="mdi-account" type="text" />
+        <v-text-field
+          label="Create Your Username"
+          name="login"
+          prepend-icon="mdi-account-edit"
+          type="text"
+        />
 
-                  <v-text-field
-                    id="password"
-                    label="Password"
-                    name="password"
-                    prepend-icon="mdi-lock"
-                    type="password"
-                  />
-                </v-form>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer />
-                <v-btn color="primary">REGISTER</v-btn>
-              </v-card-actions>
-            </v-card>
-          <!-- </v-col>
-        
-      </v-container> -->
-      </v-dialog>
-</template> 
+        <v-text-field
+          v-model="pass"
+          label="Set Password"
+          name="password"
+          prepend-icon="mdi-lock"
+          type="password"
+        />
+        <v-text-field
+          v-model="pass1"
+          label="Re-enter Password"
+          name="password"
+          prepend-icon="mdi-lock"
+          type="password"
+          @keyup="verify"
+        />
+        <v-sheet class="red--text" v-model="warning">{{warning}}</v-sheet>
+      </v-form>
+    </v-card-text>
+    <v-card-actions>
+      <v-spacer />
+      <v-btn color="primary">REGISTER</v-btn>
+    </v-card-actions>
+  </v-card>
+  <!-- </v-col>
+
+  </v-container>-->
+</template>
 
 <script>
-  export default {
-    data(){
-      return{
-        dialog:'true',
-      }
-    },
-    props: {
-      source: String,
-    },
+export default {
+  data () {
+    return {
+      dialog: 'true',
+      warning: '',
+      pass: '',
+      pass1: ''
+    }
+  },
+  methods: {
+    verify: function (event) {
+      if (this.pass !== this.pass1 && this.pass1.length > 0) {
+        this.warning = 'Passwords do not match'
+      } else this.warning = ''
+    }
   }
-</script> 
+}
+</script>
